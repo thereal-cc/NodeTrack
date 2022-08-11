@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 // Based on Ideas by Rust Repo
-
 import inquirer from 'inquirer';
 import chalkAnimation from 'chalk-animation';
 import { createSpinner } from 'nanospinner';
 import fs from "fs";
-import open from 'open';
 
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
@@ -59,7 +57,7 @@ async function ChooseFile(folder) {
     return file.file_select;
 }
 
-function createFile(fileName, folder, data) {
+async function createFile(fileName, folder, data) {
     const filePath = `${folder.toLowerCase()}/${fileName}`;
 
     fs.writeFile(filePath, data, (err) => {
@@ -69,12 +67,15 @@ function createFile(fileName, folder, data) {
         spinner.stop();
         console.log(`${fileName} has been created!`);
     });
+
+    await main();
 }
 
 async function ViewFile(fileName, folder) {
     const filePath = `${folder}/${fileName}`;
     const data = fs.readFileSync(filePath.toLowerCase(), 'utf8');
     console.log(data);
+    await main();
 }
 
 async function EditFile() {
@@ -88,9 +89,6 @@ async function EditFile() {
 }
 
 async function main() {
-    console.clear();
-    await welcome();
-
     const folder = await ChooseFolder();
 
     if (folder === "Quit") {
@@ -108,4 +106,6 @@ async function main() {
     }
 }
 
+console.clear();
+await welcome();
 await main();
