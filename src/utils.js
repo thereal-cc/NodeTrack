@@ -59,16 +59,16 @@ export async function EditFile(folder) {
         type: 'editor',
         message: 'Edit Your File',
     });
-    const filePath = `${folder.toLowerCase()}/${file.file_select}`;
+    const filePath = `${folder.toLowerCase()}/${file}`;
     const fileData = edit.edit_file;
 
     fs.writeFileSync(filePath, fileData, (err) => {
         if (err) throw err;
-        const spinner = createSpinner("Writing...").start();
-        sleep();
-        spinner.stop();
-        console.log(`${fileName} has been updated!`);
     });
+    const spinner = createSpinner("Writing...").start();
+    await sleep();
+    spinner.stop();
+    console.log(`${file} has been updated!`);
 }
 
 export async function DeleteFile(folder) {

@@ -54,7 +54,6 @@ if (actions.includes(yarg.argv._[0]) && folders.includes(yarg.argv._[1])) {
 
     await handleAction(action, folder);
     process.exit(0);
-    
 } 
 
 console.log("Error: Invalid action");
