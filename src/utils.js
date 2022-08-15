@@ -6,6 +6,11 @@ export const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 async function FileSelect(folder) {
     const files = fs.readdirSync(folder.toLowerCase());
+    if (files.length === 0) {
+        console.log("No files found in " + folder);
+        console.log("Use the 'create' action to create a new file");
+        process.exit(1);
+    }
     const file = await inquirer.prompt({
         name: 'file_select',
         type: 'list',
