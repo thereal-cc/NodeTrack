@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import fs from "fs";
 import chalkAnimation from 'chalk-animation';
 import chalk from 'chalk';
 import yargs from 'yargs/yargs';
@@ -27,6 +28,14 @@ async function welcome() {
 }
 
 async function handleAction(action, folder) {
+    try {
+        if (!fs.existsSync(folder)) {
+          fs.mkdirSync(folder);
+        }
+      } catch (err) {
+        console.error(err);
+    }
+
     switch (action) {
         case "view":
             await ViewFile(folder);

@@ -76,10 +76,10 @@ export async function DeleteFile(folder) {
     const confirm = await inquirer.prompt({
         name: 'confirm',
         type: 'confirm',
-        message: `Are you sure you want to delete ${file.file_select}?`,
+        message: `Are you sure you want to delete ${file}?`,
     });
     if (confirm.confirm) {
-        fs.unlinkSync(`${folder}/${file.file_select}`);
-        console.log(`${file.file_select} has been deleted`);
+        fs.unlinkSync(`${folder}/${file}`);
+        console.log(`${file} has been deleted`);
     }
 }
