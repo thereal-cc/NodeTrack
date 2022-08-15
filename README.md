@@ -10,3 +10,5 @@ Because This Isn't On NPM Yet, You'll Need to Install It Yourself (Instructions 
 * Clone the repository and then navigate to it.
 * Run npm install to install the dependencies.
 * Run npm install -g . to install the CLI. 
+
+Run the command `ntrack` or `ntrack --help` to learn more.
