@@ -54,7 +54,7 @@ async function handleAction(action, folder) {
 
 if (yarg.argv._[0] == null || yarg.argv._[0] == "-w" || yarg.argv._[0] == "--welcome") {  
     await welcome();
-    process.exit(1);
+    process.exit(0);
 }
 
 if (actions.includes(yarg.argv._[0]) && folders.includes(yarg.argv._[1])) {
