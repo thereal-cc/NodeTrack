@@ -13,6 +13,7 @@ const yarg = yargs(hideBin(process.argv));
 const usage = "\nUsage: ntrack <action> <folder>";
 const options = yarg.usage(usage).option("w", {alias:"welcome", describe: "display welcome message", type: "boolean", demandOption: false }).help(true).argv;
 
+// Welcome MessAGE
 async function welcome() {
     console.clear();
     const rainbow = chalkAnimation.rainbow('Welcome to NodeTrack!');
@@ -27,6 +28,7 @@ async function welcome() {
     rainbow.stop();
 }
 
+// Call Function Related to Action
 async function handleAction(action, folder) {
     try {
         if (!fs.existsSync(folder)) {
@@ -52,11 +54,13 @@ async function handleAction(action, folder) {
     }
 }
 
+// Display Welcome Message
 if (yarg.argv._[0] == null || yarg.argv._[0] == "-w" || yarg.argv._[0] == "--welcome") {  
     await welcome();
     process.exit(0);
 }
 
+// Handle Action
 if (actions.includes(yarg.argv._[0]) && folders.includes(yarg.argv._[1])) {
     const action = yarg.argv._[0];
     const folder = yarg.argv._[1];
@@ -65,6 +69,7 @@ if (actions.includes(yarg.argv._[0]) && folders.includes(yarg.argv._[1])) {
     process.exit(0);
 } 
 
+// Error
 console.log("Error: Invalid action");
 console.log("Use --help or --welcome for more information");
 process.exit(1);
